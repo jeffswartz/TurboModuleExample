@@ -20,38 +20,8 @@ class NativeLocalStorageModule(reactContext: ReactApplicationContext) : NativeLo
 
   override fun getName() = NAME
 
-  override fun setItem(value: String, key: String) {
-    val sharedPref = getReactApplicationContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-    val editor = sharedPref.edit()
-    editor.putString(key, value)
-    editor.apply()
-  }
-
-  override fun getItem(key: String): String? {
-    val sharedPref = getReactApplicationContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-    val username = sharedPref.getString(key, null)
-    return username.toString()
-  }
-
-  override fun removeItem(key: String) {
-    val sharedPref = getReactApplicationContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-    val editor = sharedPref.edit()
-    editor.remove(key)
-    editor.apply()
-  }
-
-  override fun clear() {
-    val sharedPref = getReactApplicationContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-    val editor = sharedPref.edit()
-    editor.clear()
-    editor.apply()
-  }
 
   override fun initSession(apiKey: String, sessionId: String, options: ReadableMap?) {
-    val sharedPref = getReactApplicationContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-    val editor = sharedPref.edit()
-    editor.putString(apiKey, sessionId)
-    editor.apply()
 
     session = Session.Builder(context, apiKey, sessionId)
                 .build()

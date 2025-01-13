@@ -24,10 +24,6 @@ export type SignalEvent = {
 }
 
 export interface Spec extends TurboModule {
-  setItem(value: string, key: string): void;
-  getItem(key: string): string | null;
-  removeItem(key: string): void;
-  clear(): void;
   readonly onSessionConnected?: EventEmitter<SessionConnectEvent>;
   readonly onSessionDisconnected?: EventEmitter<SessionConnectEvent>;
   readonly onStreamCreated?: EventEmitter<StreamEvent>;
