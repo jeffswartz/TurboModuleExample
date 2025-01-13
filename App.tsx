@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import NativeLocalStorage from './specs/NativeLocalStorage';
+import CustomWebView from './specs/WebViewNativeComponent';
 
 const EMPTY = '<empty>';
 
@@ -19,6 +20,7 @@ function App(): React.JSX.Element {
 
   // const listenerSubscription = React.useRef<null | EventSubscription>(null);
   const [value, setValue] = React.useState<string | null>(null);
+  const [streamId, setStreamId] = React.useState<string | null>(null);
 
   const [editingValue, setEditingValue] = React.useState<
     string | null
@@ -30,6 +32,7 @@ function App(): React.JSX.Element {
 
     NativeLocalStorage?.onStreamCreated((event: StreamEvent) => {
       console.log('onStreamCreated', event);
+      setStreamId(event.streamId);
     });
     NativeLocalStorage?.onStreamDestroyed((event: StreamEvent) => {
       console.log('onStreamCreated', event);
@@ -92,6 +95,16 @@ function App(): React.JSX.Element {
       <Button title="disconnect" onPress={disconnect} />
       <Button title="Delete" onPress={deleteValue} />
       <Button title="Clear" onPress={clearAll} />
+      {streamId &&
+      <CustomWebView
+          streamId={streamId}
+          sessionId={sessionId}
+          style={styles.webview}
+          onSubscriberConnected={(event) => {
+            console.log('onSubscriberConnected', event.nativeEvent);
+          }}
+      />
+      }
     </SafeAreaView>
   );
 }
@@ -109,6 +122,13 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     borderRadius: 5,
+  },
+  webview: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'orange',
+    borderColor: 'red',
+    borderWidth: 1,
   },
 });
 

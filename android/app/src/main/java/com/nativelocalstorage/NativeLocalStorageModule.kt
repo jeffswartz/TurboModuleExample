@@ -53,9 +53,11 @@ class NativeLocalStorageModule(reactContext: ReactApplicationContext) : NativeLo
     editor.putString(apiKey, sessionId)
     editor.apply()
 
-
     session = Session.Builder(context, apiKey, sessionId)
-                .build();
+                .build()
+
+    OTRN.putSession(session);
+
     session.setSessionListener(this)
     // session.connect(token)
   }
@@ -93,6 +95,7 @@ class NativeLocalStorageModule(reactContext: ReactApplicationContext) : NativeLo
   }
 
   override fun onStreamReceived(session: Session, stream: Stream) {
+      OTRN.putStream(stream);
       val payload =
         Arguments.createMap().apply {
           putString("streamId", stream.streamId)
