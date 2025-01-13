@@ -1,8 +1,8 @@
-package com.nativelocalstorage
+package com.opentokreactnative
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.nativelocalstorage.NativeLocalStorageSpec
+import com.opentokreactnative.NativeLocalStorageSpec
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReadableMap;

@@ -1,4 +1,4 @@
-package com.nativelocalstorage
+package com.opentokreactnative
 
 import com.opentok.android.Session
 import com.opentok.android.Stream

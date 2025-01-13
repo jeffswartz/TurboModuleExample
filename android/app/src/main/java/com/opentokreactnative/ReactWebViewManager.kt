@@ -1,4 +1,4 @@
-package com.nativelocalstorage
+package com.opentokreactnative
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.module.annotations.ReactModule;

@@ -14,7 +14,7 @@
     "type": "all",
     "jsSrcsDir": "specs",
     "android": {
-      "javaPackageName": "com.nativelocalstorage"
+      "javaPackageName": "com.opentokreactnative"
     }
   },
  "dependencies": {

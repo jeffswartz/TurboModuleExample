@@ -11,8 +11,8 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
 import com.facebook.react.soloader.OpenSourceMergedSoMapping
-import com.nativelocalstorage.NativeLocalStoragePackage
-import com.nativelocalstorage.ReactWebViewPackage
+import com.opentokreactnative.NativeLocalStoragePackage
+import com.opentokreactnative.ReactWebViewPackage
 
 class MainApplication : Application(), ReactApplication {
 
