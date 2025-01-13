@@ -5,7 +5,7 @@ import {
   Text,
   TextInput,
   Button,
-  EventSubscription,
+  // EventSubscription,
 } from 'react-native';
 
 import NativeLocalStorage from './specs/NativeLocalStorage';
@@ -34,6 +34,9 @@ function App(): React.JSX.Element {
     NativeLocalStorage?.onStreamDestroyed((event: StreamEvent) => {
       console.log('onStreamCreated', event);
     });
+    NativeLocalStorage?.onSignalReceived((event: SignalEvent) => {
+      console.log('onSignalReceived', event);
+    });
   }, []);
 
   function saveValue() {
@@ -44,6 +47,7 @@ function App(): React.JSX.Element {
   async function initSession() {
     NativeLocalStorage?.onSessionConnected((event: SessionConnectEvent) => {
       console.log('onSessionConnected', event);
+      NativeLocalStorage?.sendSignal(sessionId, 'greeting', 'hello from' + event.connectionId);
     });
 
     NativeLocalStorage?.initSession(apiKey, sessionId, {});
@@ -59,7 +63,6 @@ function App(): React.JSX.Element {
     });
 
     await NativeLocalStorage?.disconnect(sessionId);
-      // .then(() => )
     console.log('disconnect() called');
     setValue(sessionId);
   }
